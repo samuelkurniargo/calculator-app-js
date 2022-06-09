@@ -2,7 +2,7 @@ const calculator = {
   displayNumber: "0",
   operator: null,
   prevNumber: null,
-  currentNumber: null,
+  // currentNumber: null,
   waitingForCurrentNumber: false,
 };
 
@@ -38,14 +38,26 @@ function handleOperator(operator) {
         calculator.operator = operator;
         calculator.waitingForCurrentNumber = true;
         calculator.prevNumber = calculator.displayNumber;
-        calculator.displayNumber = 0; 
+        calculator.displayNumber = '0'; 
     } else {
         alert('Operator sudah ditetapkan');
     }
 }
 
 function performCalculation () {
+  if(calculator.prevNumber == null || calculator.operator == null){
+    alert("Anda belum menetapkan operator");
+    return;
+  }
 
+  let result = 0;
+  if(calculator.operator === '+') {
+    result = parseInt(calculator.prevNumber) + parseInt(calculator.displayNumber);
+  } else {
+    result = parseInt(calculator.prevNumber) - parseInt(calculator.displayNumber);
+  }
+
+  calculator.displayNumber = result;
 }
 
 const buttons = document.querySelectorAll(".button");
