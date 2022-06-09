@@ -26,11 +26,14 @@ body {
     padding: 40px;
     border: 1px solid black;
     background: -webkit-linear-gradient(top, #d2d2d2, #ddd);
+    /* background: linear-gradient(90deg, rgba(210,210,210,1) 50%, rgba(221,221,221,0.5) 100%); */
+
     cursor: pointer;
 }
 
 .button:hover {
     font-weight: bold;
+    /* background: linear-gradient(90deg, rgba(210,210,210,1) 50%, rgba(221,221,221,0.9) 100%); */
 }
 
 .double {
