@@ -38,34 +38,64 @@ function inverseNumber() {
   calculator.displayNumber = calculator.displayNumber * -1;
 }
 
-function handleOperator(operator) {
-    if(!calculator.waitingForCurrentNumber) {
-        calculator.operator = operator;
-        calculator.waitingForCurrentNumber = true;
-        calculator.prevNumber = calculator.displayNumber;
-        calculator.displayNumber = '0'; 
-    } else {
-        alert('Operator sudah ditetapkan');
-    }
+function percentage() {
+  if (calculator.displayNumber === "0") {
+    return;
+  }
+  calculator.displayNumber = calculator.displayNumber / 100;
 }
 
-function performCalculation () {
-  if(calculator.prevNumber == null || calculator.operator == null){
+function handleOperator(operator) {
+  if (!calculator.waitingForCurrentNumber) {
+    calculator.operator = operator;
+    calculator.waitingForCurrentNumber = true;
+    calculator.prevNumber = calculator.displayNumber;
+    calculator.displayNumber = "0";
+  } else {
+    alert("Operator sudah ditetapkan");
+  }
+}
+
+function performCalculation() {
+  if (calculator.prevNumber == null || calculator.operator == null) {
     alert("Anda belum menetapkan operator");
     return;
   }
 
   let result = 0;
-  if(calculator.operator === '+') {
-    result = parseInt(calculator.prevNumber) + parseInt(calculator.displayNumber);
-  } else if (calculator.operator === '-'){
-    result = parseInt(calculator.prevNumber) - parseInt(calculator.displayNumber);
-  } else if (calculator.operator === 'x') {
-    result = parseInt(calculator.prevNumber) * parseInt(calculator.displayNumber);
-  } else {
-    result = parseInt(calculator.prevNumber) / parseInt(calculator.displayNumber);
-  }
 
+  if (
+    calculator.prevNumber == Math.floor(calculator.prevNumber) ||
+    calculator.currentNumber == Math.floor(calculator.currentNumber)
+  ) {
+    if (calculator.operator === "+") {
+      result =
+        parseInt(calculator.prevNumber) + parseInt(calculator.displayNumber);
+    } else if (calculator.operator === "-") {
+      result =
+        parseInt(calculator.prevNumber) - parseInt(calculator.displayNumber);
+    } else if (calculator.operator === "x") {
+      result =
+        parseInt(calculator.prevNumber) * parseInt(calculator.displayNumber);
+    } else {
+      result =
+        parseInt(calculator.prevNumber) / parseInt(calculator.displayNumber);
+    }
+  } else {
+    if (calculator.operator === "+") {
+      result =
+        parseFloat(calculator.prevNumber) + parseFloat(calculator.displayNumber);
+    } else if (calculator.operator === "-") {
+      result =
+        parseFloat(calculator.prevNumber) - parseFloat(calculator.displayNumber);
+    } else if (calculator.operator === "x") {
+      result =
+        parseFloat(calculator.prevNumber) * parseFloat(calculator.displayNumber);
+    } else {
+      result =
+        parseFloat(calculator.prevNumber) / parseFloat(calculator.displayNumber);
+    }
+  }
 
   calculator.displayNumber = result;
 }
@@ -82,7 +112,7 @@ for (let button of buttons) {
       return;
     }
 
-    if(target.classList.contains("clearEntry")) {
+    if (target.classList.contains("clearEntry")) {
       clearEntry();
       updateDisplay();
       return;
@@ -90,6 +120,12 @@ for (let button of buttons) {
 
     if (target.classList.contains("negative")) {
       inverseNumber();
+      updateDisplay();
+      return;
+    }
+
+    if (target.classList.contains("percentage")) {
+      percentage();
       updateDisplay();
       return;
     }
