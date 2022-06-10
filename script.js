@@ -18,6 +18,11 @@ function clearCalculator() {
   calculator.waitingForCurrentNumber = false;
 }
 
+function clearEntry() {
+  calculator.displayNumber = "0";
+  calculator.currentNumber = null;
+}
+
 function inputDigit(digit) {
   if (calculator.displayNumber === "0") {
     calculator.displayNumber = digit;
@@ -53,9 +58,14 @@ function performCalculation () {
   let result = 0;
   if(calculator.operator === '+') {
     result = parseInt(calculator.prevNumber) + parseInt(calculator.displayNumber);
-  } else {
+  } else if (calculator.operator === '-'){
     result = parseInt(calculator.prevNumber) - parseInt(calculator.displayNumber);
+  } else if (calculator.operator === 'x') {
+    result = parseInt(calculator.prevNumber) * parseInt(calculator.displayNumber);
+  } else {
+    result = parseInt(calculator.prevNumber) / parseInt(calculator.displayNumber);
   }
+
 
   calculator.displayNumber = result;
 }
@@ -68,6 +78,12 @@ for (let button of buttons) {
 
     if (target.classList.contains("clear")) {
       clearCalculator();
+      updateDisplay();
+      return;
+    }
+
+    if(target.classList.contains("clearEntry")) {
+      clearEntry();
       updateDisplay();
       return;
     }

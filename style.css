@@ -4,13 +4,13 @@
 
 body {
     font-family: sans-serif;
+    background: linear-gradient(45deg, rgba(228,185,241,1) 36%, rgba(109,78,255,1) 93%);
 }
 
 .flex-container-column {
     display: flex;
     flex-direction: column;
-
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     text-align: right;
 }
@@ -21,11 +21,13 @@ body {
 
 .button {
     flex-basis: 25%;
-    font-size: 1.5em;
+    font-size: 1.7em;
     text-align: center;
     padding: 40px;
-    border: 1px solid black;
-    background: -webkit-linear-gradient(top, #d2d2d2, #ddd);
+    /* border: 1px solid black; */
+    /* background: -webkit-linear-gradient(top, #d2d2d2, #ddd); */
+    background: rgb(17, 17, 17);
+    color: white;
     /* background: linear-gradient(90deg, rgba(210,210,210,1) 50%, rgba(221,221,221,0.5) 100%); */
 
     cursor: pointer;
@@ -34,6 +36,11 @@ body {
 .button:hover {
     font-weight: bold;
     /* background: linear-gradient(90deg, rgba(210,210,210,1) 50%, rgba(221,221,221,0.9) 100%); */
+    background-color: rgba(156, 156, 150, 0.1)
+}
+.button:active {
+    background: #8221FE;
+    color: white;
 }
 
 .double {
@@ -44,15 +51,20 @@ body {
     color: white;
     width: 100%;
     padding: 10px 20px;
-    background-color: #333333;
-    border: 1px solid black;
+    /* background-color: #333333; */
+    /* border: 1px solid black; */
     font-size: 2em;
+    background: rgb(17, 17, 17);
 }
 
 .operator, 
 .negative, 
-.equals {
-    background: orange;
+.equals,
+.clear,
+.clearEntry {
+    /* background: orange; */
+    background: rgb(17, 17, 17);
+    color: #8221FE;
 }
 
 .card {
@@ -60,6 +72,7 @@ body {
     border-radius: 5px;
     padding: 30px;
     margin-top: 20px;
+    background: rgb(17, 17, 17);
 }
 
 @media screen and (max-width: 513px) {
